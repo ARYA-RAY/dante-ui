@@ -2,6 +2,9 @@ import './App.css';
 import { useState } from 'react';
 import { gql, useQuery, useApolloClient } from '@apollo/client';
 
+
+let return_data = []
+
 const GET_RELATION = gql`
 query GetRelation {
   RelationResolver(
@@ -36,16 +39,20 @@ function GetRelation({ attributes, functionalDependencies, multivaluedDependenci
   const { loading, error, data } = useQuery(GET_RELATION, {
     variables: { attributes, functionalDependencies, multivaluedDependencies },
   });
-
+  if (data) {
+    return_data = [
+      `Display Relation: ${data.RelationResolver.printRelation}`,
+      // `Closures: ${data.RelationResolver.closures}`,
+      // `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures}`,
+      // `Canonical Cover: data.RelationResolver.minimalCover`,
+      // `Check Normal Forms: secondN:data.RelationResolver.normalFormsResults.secondNormalFormMsg`,
+      // `3NF Decomposition: thirdN:data.RelationResolver.normalFormsResults.thirdNormalFormMsg`,
+      // `BCNF Decompositio: data.RelationResolver.normalFormsResults.BCNFMsg`
+    ];
+    }
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
-  // Display the retrieved data
-  return (
-    <div>
-      <p>Relation: {data.RelationResolver.printRelation}</p>
-    </div>
-  );
+  console.log(data)
 }
 
 function App() {
@@ -64,15 +71,6 @@ function App() {
     'BCNF Decomposition'
   ];
 
-  const data = [
-    'R(A,b,C,D)',
-    'A,B,C',
-    'R(A,b,C,D)',
-    'R(A,b,C,D)',
-    'R(A,b,C,D)',
-    'R(A,b,C,D)',
-    'R(A,b,C,D)'
-  ]
 
   const toggleButton = (index) => {
     const isActive = activeButtons.includes(index);
@@ -108,8 +106,9 @@ function App() {
   };
 
   return (
-    
+
     <div className="flex flex-row h-screen">
+      <GetRelation />
       <div className='bg-white w-full'>
         <div className='w-[95%] bg-slate-300 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
           <div className='ml-4'>
@@ -200,10 +199,7 @@ function App() {
                 }}
               >
                 <div>
-                  <h1 className='text-[17px] text-pink-500'>{text}: </h1>
-                </div>
-                <div className='ml-2'>
-                  <h1 className='text-[17px] text-black'>R(A,B,C,d)</h1>
+                  <h1 className='text-[17px] text-pink-500'>{return_data}</h1>
                 </div>
               </div>
             ))}
