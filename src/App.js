@@ -42,14 +42,17 @@ function GetRelation({ attributes, functionalDependencies, multivaluedDependenci
   if (data) {
     return_data = [
       `Display Relation: ${data.RelationResolver.printRelation}`,
+      `Display Relation: ${data.RelationResolver.printRelation}`,
+      `Display Relation: ${data.RelationResolver.printRelation}`,
       // `Closures: ${data.RelationResolver.closures.completeClosure}`,
       // `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures}`,
-      // `Canonical Cover: data.RelationResolver.minimalCover`,
+      `Canonical Cover: ${data.RelationResolver.minimalCover.toString()}`,
       `Check Normal Forms: ${data.RelationResolver.normalFormsResults.secondNormalFormMsg}`,
       // `3NF Decomposition: thirdN:data.RelationResolver.normalFormsResults.thirdNormalFormMsg`,
       // `BCNF Decompositio: data.RelationResolver.normalFormsResults.BCNFMsg`
     ];
     } 
+    console.log(return_data)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 }
@@ -69,7 +72,6 @@ function App() {
     '3NF Decomposition',
     'BCNF Decomposition'
   ];
-
 
   const toggleButton = (index) => {
     const isActive = activeButtons.includes(index);
@@ -189,7 +191,7 @@ function App() {
             <h1 className='text-black-500 text-3xl font-semibold pt-3'>Output</h1>
           </div>
           <div style={{ marginTop: '20px' }}>
-            {buttons.map((text, index) => (
+            {return_data.map((return_data, index) => (
               <div
                 key={index}
                 className='flex flex-row ml-3 mt-10'
