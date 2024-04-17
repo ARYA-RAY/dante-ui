@@ -1,6 +1,52 @@
 import './App.css';
 import { useState } from 'react';
+import { gql, useQuery, useApolloClient } from '@apollo/client';
 
+const GET_RELATION = gql`
+query GetRelation {
+  RelationResolver(
+    attributes: "R(A,B,C,D,E)",
+    functionalDependencies: "A -> B,C; C,D -> E; B -> D; E -> A",
+    multivaluedDependencies: ""
+  ) {
+    printRelation
+    closures {
+      completeClosure
+      leftSideAttributes
+    }
+    minimumKeyClosures
+    superKeyClosures
+    minimalCover
+    normalFormsResults {
+      secondNormalFormMsg
+      thirdNormalFormMsg
+      BCNFMsg
+      fourthNormalFormMsg
+    }
+    threeNFDecomposition {
+      outputMsg
+    }
+    bcnfDecomposition {
+      outputMsg
+    }
+  }
+}`;
+
+function GetRelation({ attributes, functionalDependencies, multivaluedDependencies }) {
+  const { loading, error, data } = useQuery(GET_RELATION, {
+    variables: { attributes, functionalDependencies, multivaluedDependencies },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  // Display the retrieved data
+  return (
+    <div>
+      <p>Relation: {data.RelationResolver.printRelation}</p>
+    </div>
+  );
+}
 
 function App() {
   const [inputs, setInputs] = useState([{ left: '', right: '' }]);
@@ -62,6 +108,7 @@ function App() {
   };
 
   return (
+    
     <div className="flex flex-row h-screen">
       <div className='bg-white w-full'>
         <div className='w-[95%] bg-slate-300 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
@@ -97,8 +144,8 @@ function App() {
                   />
                 </div>
               ))}
-              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-md' onClick={handleAddInput}>
-                <h1 className='font-bold '>+</h1>
+              <button className='ml-3 bg-pink-500 mt-10 w-7 rounded-md' onClick={handleAddInput}>
+                <h1 className='font-bold mb-1'>+</h1>
               </button>
             </div>
             <div className='flex flex-col'>
@@ -120,8 +167,8 @@ function App() {
                   />
                 </div>
               ))}
-              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-md' onClick={handleMultAddInput}>
-                <h1 className='font-bold '>+</h1>
+              <button className='ml-3 bg-pink-500 mt-10 w-7 rounded-md' onClick={handleMultAddInput}>
+                <h1 className='font-bold mb-1'>+</h1>
               </button>
             </div>
           </div>
