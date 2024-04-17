@@ -40,10 +40,11 @@ function GetRelation({ attributes, functionalDependencies, multivaluedDependenci
     variables: { attributes, functionalDependencies, multivaluedDependencies },
   });
   if (data) {
+    const closuresWithoutTypename = data.RelationResolver.closures.map(({ __typename, ...rest }) => rest);
     return_data = [
       `Display Relation: ${data.RelationResolver.printRelation}`,
-      `Display Relation: ${data.RelationResolver.printRelation}`,
-      // `Closures: ${data.RelationResolver.closures.completeClosure.toString()}`,
+      // `Display Relation: ${data.RelationResolver.printRelation}`,
+      `Closures: ${JSON.stringify(closuresWithoutTypename, null, 4)}`,
       `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures.toString()}`,
       `Canonical Cover: ${data.RelationResolver.minimalCover.toString()}`,
       `Check Normal Forms: ${data.RelationResolver.normalFormsResults.secondNormalFormMsg}`,
