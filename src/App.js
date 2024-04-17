@@ -63,16 +63,16 @@ function App() {
 
   return (
     <div className="flex flex-row h-screen">
-      <div className='bg-fuchsia-200 w-full'>
-        <div className='w-[95%] bg-violet-900 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
+      <div className='bg-white w-full'>
+        <div className='w-[95%] bg-slate-300 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
           <div className='ml-4'>
-            <h1 className='text-pink-500 text-3xl font-semibold pt-3'>Graphql Dante</h1>
+            <h1 className='text-black-500 text-3xl font-semibold pt-3'>Graphql Dante</h1>
           </div>
           <div className='mt-10'>
             <div className='flex flex-row ml-3'>
               <h1 className='text-pink-500 text-[17px]'>Attributes(comma seperated): </h1>
               <input
-                className='ml-3 bg-fuchsia-300 rounded-lg'
+                className='ml-3 bg-white border-2 border-black rounded-md'
                 name='attributes'
                 value={attributes}
                 onChange={e => handleAttributeChange(e.target.value)}
@@ -83,21 +83,21 @@ function App() {
                 <div className='flex flex-row ml-3 mt-10'>
                   <h1 className='text-pink-500 text-[17px]'>Functional Dependency: </h1>
                   <input
-                    className='ml-3 bg-fuchsia-300 rounded-lg'
+                    className='ml-3 bg-white border-2 border-black rounded-md'
                     name='left'
                     value={input.left}
                     onChange={e => handleInputChange(index, 'left', e.target.value)}
                   />
                   <h1 className='text-pink-500 ml-3 text-[17px]'>-&gt;</h1>
                   <input
-                    className='ml-3 bg-fuchsia-300 rounded-lg'
+                    className='ml-3 bg-white border-2 border-black rounded-md'
                     name='right'
                     value={input.right}
                     onChange={e => handleInputChange(index, 'right', e.target.value)}
                   />
                 </div>
               ))}
-              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-[100px]' onClick={handleAddInput}>
+              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-md' onClick={handleAddInput}>
                 <h1 className='font-bold '>+</h1>
               </button>
             </div>
@@ -106,21 +106,21 @@ function App() {
                 <div className='flex flex-row ml-3 mt-10'>
                   <h1 className='text-pink-500 text-[17px]'>Multivalued Dependency: </h1>
                   <input
-                    className='ml-3 bg-fuchsia-300 rounded-lg'
+                    className='ml-3 bg-white border-2 border-black rounded-md'
                     name='left'
                     value={input.left}
                     onChange={e => handleMultInputChange(index, 'left', e.target.value)}
                   />
                   <h1 className='text-pink-500 ml-3 text-[17px]'>-&gt;-&gt;</h1>
                   <input
-                    className='ml-3 bg-fuchsia-300 rounded-lg'
+                    className='ml-3 bg-white border-2 border-black rounded-md'
                     name='right'
                     value={input.right}
                     onChange={e => handleMultInputChange(index, 'right', e.target.value)}
                   />
                 </div>
               ))}
-              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-[100px]' onClick={handleMultAddInput}>
+              <button className='ml-3 bg-pink-500 mt-10 w-6 rounded-md' onClick={handleMultAddInput}>
                 <h1 className='font-bold '>+</h1>
               </button>
             </div>
@@ -129,7 +129,7 @@ function App() {
             {buttons.map((text, index) => (
               <button
                 key={index}
-                className={activeButtons.includes(index) ? 'ml-5 bg-pink-500 rounded-[100px] my-2' : 'ml-5 bg-fuchsia-300 rounded-[100px] my-2'}
+                className={activeButtons.includes(index) ? 'ml-5 bg-pink-500 rounded-md my-2' : 'ml-5 bg-fuchsia-300 rounded-md my-2'}
                 onClick={() => toggleButton(index)}
               >
                 <h1 className='mx-3 my-2'>{text}</h1>
@@ -138,10 +138,10 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='bg-fuchsia-200 w-full'>
-        <div className='w-[95%] bg-violet-900 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
+      <div className='bg-white w-full'>
+        <div className='w-[95%] bg-slate-300 h-[91%] my-9 mx-auto rounded-lg overflow-auto'>
           <div className='ml-4'>
-            <h1 className='text-pink-500 text-3xl font-semibold pt-3'>Output</h1>
+            <h1 className='text-black-500 text-3xl font-semibold pt-3'>Output</h1>
           </div>
           <div style={{ marginTop: '20px' }}>
             {buttons.map((text, index) => (
@@ -156,7 +156,7 @@ function App() {
                   <h1 className='text-[17px] text-pink-500'>{text}: </h1>
                 </div>
                 <div className='ml-2'>
-                  <h1 className='text-[17px] text-fuchsia-300'>R(A,B,C,d)</h1>
+                  <h1 className='text-[17px] text-black'>R(A,B,C,d)</h1>
                 </div>
               </div>
             ))}
