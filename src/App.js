@@ -42,17 +42,16 @@ function GetRelation({ attributes, functionalDependencies, multivaluedDependenci
   if (data) {
     return_data = [
       `Display Relation: ${data.RelationResolver.printRelation}`,
-      // `Closures: ${data.RelationResolver.closures}`,
+      // `Closures: ${data.RelationResolver.closures.completeClosure}`,
       // `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures}`,
       // `Canonical Cover: data.RelationResolver.minimalCover`,
-      // `Check Normal Forms: secondN:data.RelationResolver.normalFormsResults.secondNormalFormMsg`,
+      `Check Normal Forms: ${data.RelationResolver.normalFormsResults.secondNormalFormMsg}`,
       // `3NF Decomposition: thirdN:data.RelationResolver.normalFormsResults.thirdNormalFormMsg`,
       // `BCNF Decompositio: data.RelationResolver.normalFormsResults.BCNFMsg`
     ];
-    }
+    } 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  console.log(data)
 }
 
 function App() {
@@ -195,7 +194,7 @@ function App() {
                 key={index}
                 className='flex flex-row ml-3 mt-10'
                 style={{
-                  display: activeButtons.includes(index) ? 'flex' : 'none',
+                  display: activeButtons.includes(index) ? 'flex' : 'none'
                 }}
               >
                 <div>
