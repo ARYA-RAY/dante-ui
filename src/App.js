@@ -43,13 +43,12 @@ function GetRelation({ attributes, functionalDependencies, multivaluedDependenci
     return_data = [
       `Display Relation: ${data.RelationResolver.printRelation}`,
       `Display Relation: ${data.RelationResolver.printRelation}`,
-      `Display Relation: ${data.RelationResolver.printRelation}`,
-      // `Closures: ${data.RelationResolver.closures.completeClosure}`,
-      // `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures}`,
+      // `Closures: ${data.RelationResolver.closures.completeClosure.toString()}`,
+      `Minimum Key Closures: ${data.RelationResolver.minimumKeyClosures.toString()}`,
       `Canonical Cover: ${data.RelationResolver.minimalCover.toString()}`,
       `Check Normal Forms: ${data.RelationResolver.normalFormsResults.secondNormalFormMsg}`,
-      // `3NF Decomposition: thirdN:data.RelationResolver.normalFormsResults.thirdNormalFormMsg`,
-      // `BCNF Decompositio: data.RelationResolver.normalFormsResults.BCNFMsg`
+      `3NF Decomposition: ${data.RelationResolver.normalFormsResults.thirdNormalFormMsg}`,
+      `BCNF Decompositio: ${data.RelationResolver.normalFormsResults.BCNFMsg}`
     ];
     } 
     console.log(return_data)
